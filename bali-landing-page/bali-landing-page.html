@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BALI - Pulau Dewata</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #0B1D26;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 80px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.5s;
+        }
+        
+        header.scrolled {
+            background-color: rgba(11, 29, 38, 0.9);
+            padding: 20px 80px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFA343;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 40px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #FFA343;
+        }
+        
+        .account {
+            display: flex;
+            align-items: center;
+        }
+        
+        .account a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .account a:hover {
+            color: #FFA343;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(11, 29, 38, 0.3), rgba(11, 29, 38, 0.7)), url("asset-landing-page/Gambar 5.jpg") no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .tag {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .tag::before {
+            content: "";
+            width: 70px;
+            height: 2px;
+            background-color: #FFA343;
+            margin-right: 20px;
+        }
+        
+        .tag span {
+            color: #FFA343;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+        
+        .hero h1 {
+            font-size: 88px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            max-width: 700px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+        
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: #FFA343;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .cta-btn:hover {
+            color: #fff;
+        }
+        
+        .cta-btn span {
+            margin-right: 10px;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 200px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section .bg-number {
+            position: absolute;
+            font-size: 240px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            left: -20px;
+            top: 100px;
+        }
+        
+        .section-content {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-info {
+            flex: 1;
+            padding-right: 60px;
+        }
+        
+        .section-image {
+            flex: 1;
+            height: 600px;
+            position: relative;
+        }
+        
+        .section-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .section-title .number {
+            font-size: 72px;
+            font-weight: 700;
+            color: #FFA343;
+            margin-right: 30px;
+            line-height: 1;
+        }
+        
+        .section-title h2 {
+            font-size: 64px;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+        
+        .section-description {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: #FFA343;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .read-more:hover {
+            color: #fff;
+        }
+        
+        .section-image {
+            display: flex;
+            justify-content: center; /* Memusatkan gambar di dalam frame */
+            align-items: center;
+            flex-wrap: wrap; /* Membuat gambar turun ke baris berikutnya jika tidak cukup ruang */
+            gap: 20px; /* Memberikan jarak antar gambar */
+        }
+
+        .section-image .kuliner-image {
+            max-width: 100%; /* Membuat gambar tidak melebihi lebar frame */
+            height: auto; /* Menjaga rasio aspek gambar */
+            object-fit: contain; /* Memastikan gambar sepenuhnya terlihat tanpa terpotong */
+            border-radius: 10px; /* Memberikan sudut melengkung */
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0B1D26;
+            padding: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-column {
+            flex: 1;
+            margin-right: 40px;
+        }
+        
+        .footer-column:last-child {
+            margin-right: 0;
+        }
+        
+        .footer-column h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #FFA343;
+            opacity: 1;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 60px;
+            opacity: 0.6;
+            font-size: 16px;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 72px;
+            }
+            
+            .section-title h2 {
+                font-size: 48px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            header {
+                padding: 20px 40px;
+            }
+            
+            header.scrolled {
+                padding: 15px 40px;
+            }
+            
+            .section {
+                padding: 100px 40px;
+            }
+            
+            .section-content {
+                flex-direction: column;
+            }
+            
+            .section-info {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            
+            .section-image {
+                height: 400px;
+            }
+            
+            .footer-content {
+                flex-wrap: wrap;
+            }
+            
+            .footer-column {
+                flex: 0 0 50%;
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 52px;
+            }
+            
+            .section-title .number {
+                font-size: 48px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            nav ul li {
+                margin-left: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            header {
+                padding: 20px;
+            }
+            
+            header.scrolled {
+                padding: 15px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .section {
+                padding: 80px 20px;
+            }
+            
+            .footer-column {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">BALI</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#budaya">Budaya</a></li>
+                <li><a href="#destinasi">Destinasi</a></li>
+                <li><a href="#kuliner">Kuliner</a></li>
+            </ul>
+        </nav>
+        <div class="account">
+            <a href="#">Kontak</a>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="tag">
+                <span>JELAJAHI PULAU DEWATA</span>
+            </div>
+            <h1>Keindahan Pulau Bali yang Magis</h1>
+            <p>Temukan pesona Pulau Dewata dengan kebudayaan yang kaya, panorama alam yang menakjubkan, dan tradisi yang telah bertahan ratusan tahun.</p>
+            <button class="cta-btn">
+                <span>Jelajahi Selengkapnya</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 8L21 12M21 12L17 16M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <section id="budaya" class="section">
+        <div class="bg-number">01</div>
+        <div class="section-content">
+            <div class="section-info">
+                <div class="tag">
+                    <span>BUDAYA</span>
+                </div>
+                <div class="section-title">
+                    <div class="number">01</div>
+                    <h2>Kearifan Lokal Tri Hita Karana</h2>
+                </div>
+                <p class="section-description">
+                    Tri Hita Karana adalah filosofi kehidupan masyarakat Bali yang menekankan keharmonisan hubungan antara manusia dengan Tuhan, manusia dengan manusia, dan manusia dengan lingkungan. Filosofi ini tercermin dalam seluruh aspek kehidupan masyarakat Bali, mulai dari upacara keagamaan, arsitektur tradisional, hingga struktur sosial kemasyarakatan.
+                </p>
+                <p class="section-description">
+                    Filosofi ini juga menjadi dasar dalam pengelolaan pariwisata di Bali, di mana keseimbangan antara pelestarian budaya, lingkungan, dan kesejahteraan masyarakat lokal selalu dijaga. Tri Hita Karana tidak hanya menjadi panduan hidup, tetapi juga menjadi daya tarik unik yang membuat Bali berbeda dari destinasi lainnya.
+                </p>
+                <a href="https://id.wikipedia.org/wiki/Tri_Hita_Karana" class="read-more" target="_blank" rel="noopener noreferrer">
+                    <span>Baca Selengkapnya</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 8L21 12M21 12L17 16M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="section-image">
+                <img src="asset-landing-page/Gambar%206.jpeg" alt="Upacara adat Bali">
+            </div>
+        </div>
+    </section>
+
+    <section id="destinasi" class="section">
+        <div class="bg-number">02</div>
+        <div class="section-content">
+            <div class="section-info">
+                <div class="tag">
+                    <span>DESTINASI</span>
+                </div>
+                <div class="section-title">
+                    <div class="number">02</div>
+                    <h2>Pura Ulun Danu Beratan</h2>
+                </div>
+                <p class="section-description">
+                    Terletak di tepi Danau Beratan, Bedugul, Pura Ulun Danu Beratan adalah salah satu pura terindah di Bali. Dibangun untuk memuja Dewi Danu, dewi air dan danau, pura ini berdiri megah dengan latar belakang pegunungan dan danau yang tenang. Arsitektur pura yang memadukan konsep Meru (gunung suci) dengan keindahan alam sekitar menciptakan pemandangan yang memukau dan spiritual.
+                </p>
+                <a href="https://id.wikipedia.org/wiki/Pura_Ulun_Danu_Beratan" class="read-more" target="_blank" rel="noopener noreferrer">
+                    <span>Baca Selengkapnya</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 8L21 12M21 12L17 16M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="section-image">
+                <img src="asset-landing-page/Gambar%201.jpg" alt="Pura Ulun Danu Beratan">
+            </div>
+        </div>
+    </section>
+
+    <section id="kuliner" class="section">
+        <div class="bg-number">03</div>
+        <div class="section-content">
+            <div class="section-info">
+                <div class="tag">
+                    <span>KULINER</span>
+                </div>
+                <div class="section-title">
+                    <div class="number">03</div>
+                    <h2>Babi Guling & Sajian Tradisional</h2>
+                </div>
+                <p class="section-description">
+                    Kuliner Bali terkenal dengan cita rasa yang kaya dan penggunaan rempah-rempah yang melimpah. Babi Guling, ayam betutu, sate lilit, dan lawar adalah beberapa hidangan tradisional yang wajib dicoba. Setiap hidangan memiliki cerita dan filosofi tersendiri, mencerminkan kekayaan budaya dan sejarah Pulau Dewata. Rasakan sensasi kuliner autentik Bali yang akan membuat pengalaman wisata Anda semakin berkesan.
+                </p>
+                <a href="https://www.detik.com/bali/kuliner/d-6371471/25-makanan-khas-bali-yang-enak-dan-wajib-dicoba-saat-berlibur" class="read-more" target="_blank" rel="noopener noreferrer">
+                    <span>Baca Selengkapnya</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 8L21 12M21 12L17 16M21 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="section-image">
+                <img src="asset-landing-page/Gambar 10.jpg" alt="Kuliner tradisional Bali" class="kuliner-image">
+               
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>BALI</h3>
+                <p>Website resmi pariwisata dan budaya Pulau Dewata. Temukan keindahan, wisata, dan pengalaman otentik Bali.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Menu</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#budaya">Budaya</a></li>
+                    <li><a href="#destinasi">Destinasi</a></li>
+                    <li><a href="#kuliner">Kuliner</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Lainnya</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Tradisi</a></li>
+                    <li><a href="#">Seniman</a></li>
+                    <li><a href="#">Festival</a></li>
+                    <li><a href="#">Kerajinan</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Kontak</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:info@balitourism.com">info@balitourism.com</a></li>
+                    <li><a href="tel:+62361123456">+62 361 123 456</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2025 BALI - Semua Hak Dilindungi
+        </div>
+    </footer>
+
+    <script>
+        // Script untuk menambahkan efek scroll pada header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
